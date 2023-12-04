@@ -12,6 +12,7 @@ public class WordRepository {
 
     private final WordDao mWordDao;
     private final LiveData<List<Word>> mAllWords;
+
     public WordRepository(Application application) {
         WordRoomDatabase db = WordRoomDatabase.getDatabase(application);
         mWordDao = db.wordDao();
@@ -22,7 +23,7 @@ public class WordRepository {
         return mAllWords;
     }
 
-    public void insert(Word word){
-        WordRoomDatabase.databaseWriteExecutor.execute(()-> mWordDao.insert(word));
+    public void insert(Word word) {
+        WordRoomDatabase.databaseWriteExecutor.execute(() -> mWordDao.insert(word));
     }
 }

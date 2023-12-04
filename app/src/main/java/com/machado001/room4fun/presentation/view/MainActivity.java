@@ -14,6 +14,8 @@ import com.machado001.room4fun.presentation.adapter.WordListAdapter;
 import com.machado001.room4fun.domain.entities.Word;
 import com.machado001.room4fun.presentation.view.viewModel.WordViewModel;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
     private WordViewModel mWordViewModel;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Word word = new Word(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
+            Word word = new Word(Objects.requireNonNull(data.getStringExtra(NewWordActivity.EXTRA_REPLY)));
             mWordViewModel.insert(word);
         } else {
             Toast.makeText(
